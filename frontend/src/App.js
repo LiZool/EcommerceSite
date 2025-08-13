@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import ProductPage from './pages/ProductPage';
 import ProductList from './pages/ProductList';
 import CartPage from './pages/CartPage';
+import './App.css';
 
 const App = () => {
   return (
