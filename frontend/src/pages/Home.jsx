@@ -9,7 +9,7 @@ const phrases = [
   "24/7 Support"
 ];
 
-const titles = ["Overview", "Who is it for", "Why join?"];
+const titles = ["Overview", "Who is it for", "Why join us?"];
 
 const Home = () => {
   const [phraseIndex, setPhraseIndex] = useState(0);
