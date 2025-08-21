@@ -115,7 +115,7 @@ const Home = () => {
           <img
             src={GundamHead}
             alt={`Product ${item}`}
-            className="w-full h-56 object-cover"
+            className="max-w-full max-h-48 mx-auto object-contain"
           />
           <div className="p-4 bg-gray-50 text-center">
             <h3 className="text-lg font-semibold text-gray-800">
