@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GundamHead from '../assets/images/gundamhead.png'
+import ProductGrid from "../components/ProductGrid";
 
 const phrases = [
   "Fast Delivery",
@@ -15,6 +16,14 @@ const titles = ["Overview", "Who is it for", "Why join us?"];
 const Home = () => {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [titleIndex, setTitleIndex] = useState(0);
+
+  // Example product list
+  const products = [
+    { id: 1, name: "Booklight", price: "$19.99", image: GundamHead },
+    { id: 2, name: "Bookmark", price: "$5.99", image: GundamHead },
+    { id: 3, name: "Tech Gadget", price: "$29.99", image: GundamHead },
+    { id: 4, name: "Stationery Set", price: "$12.99", image: GundamHead },
+  ];
 
   const handleNext = () => setPhraseIndex((prev) => (prev + 1) % phrases.length);
   const handlePrev = () => setPhraseIndex((prev) => (prev - 1 + phrases.length) % phrases.length);
@@ -97,36 +106,15 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Products Section with Grid */}
+      {/* Products Section */}
       <section id="products" className="bg-white px-6 py-12">
-  <div className="container mx-auto">
-    {/* Heading */}
-    <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">
-      Our Products
-    </h2>
-
-    {/* Grid Layout */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {[1,2,3,4,5,6].map((item) => (
-        <div
-          key={item}
-          className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
-        >
-          <img
-            src={GundamHead}
-            alt={`Product ${item}`}
-            className="max-w-full max-h-48 mx-auto object-contain"
-          />
-          <div className="p-4 bg-gray-50 text-center">
-            <h3 className="text-lg font-semibold text-gray-800">
-              {`Product ${item}`}
-            </h3>
-          </div>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">
+            Our Products
+          </h2>
+          <ProductGrid products={products} />
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Features Section with Animated Phrases */}
       <section id="features" className="h-screen flex items-center justify-center bg-yellow-50">
