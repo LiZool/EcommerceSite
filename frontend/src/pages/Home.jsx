@@ -1,8 +1,47 @@
 // src/pages/Home.jsx
+
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GundamHead from '../assets/images/gundamhead.png'
 import ProductGrid from "../components/ProductGrid";
+
+const AnimatedHeading = ({ text }) => {
+  const letters = text.split('');
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.05 },
+    },
+  };
+
+  const letter = {
+    hidden: { opacity: 0, y: 20, scale: 1.2 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: 'spring', stiffness: 500, damping: 30 },
+    },
+  };
+
+  return (
+    <motion.h2
+      className="text-5xl font-extrabold text-blue-700 drop-shadow-md"
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      {letters.map((char, index) => (
+        <motion.span key={index} variants={letter} className="inline-block">
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
+    </motion.h2>
+  );
+};
+
 
 const phrases = [
   "Fast Delivery",
@@ -23,6 +62,9 @@ const Home = () => {
     { id: 2, name: "Bookmark", price: "$5.99", image: GundamHead },
     { id: 3, name: "Tech Gadget", price: "$29.99", image: GundamHead },
     { id: 4, name: "Stationery Set", price: "$12.99", image: GundamHead },
+    { id: 5, name: "Gundam Set", price: "$12.99", image: GundamHead },
+    { id: 6, name: "Set", price: "$12.99", image: GundamHead },
+    { id: 7, name: "Set", price: "$12.99", image: GundamHead },
   ];
 
   const handleNext = () => setPhraseIndex((prev) => (prev + 1) % phrases.length);
@@ -96,9 +138,7 @@ const Home = () => {
 
           {/* Welcome Text (Right) */}
           <div className="text-center lg:text-left">
-            <h2 className="text-5xl font-extrabold text-blue-700 drop-shadow-md">
-              Welcome to Our Website
-            </h2>
+            <AnimatedHeading text="Welcome to Our Website" />
             <p className="mt-4 text-lg text-gray-600 max-w-md">
               Discover our services, explore why people trust us, and see what makes us stand out.
             </p>
@@ -107,14 +147,14 @@ const Home = () => {
       </section>
 
       {/* Products Section */}
-      <section id="products" className="bg-white px-6 py-12">
-        <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">
-            Our Products
-          </h2>
-          <ProductGrid products={products} />
-        </div>
-      </section>
+<section id="products" className="bg-white px-6 py-12">
+  <div className="max-w-screen-2xl mx-auto">
+    <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">
+      Our Products
+    </h2>
+    <ProductGrid products={products} />
+  </div>
+</section>
 
       {/* Features Section with Animated Phrases */}
       <section id="features" className="h-screen flex items-center justify-center bg-yellow-50">
@@ -139,6 +179,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
 
       {/* Contact Section */}
       <section id="contact" className="h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-purple-200">

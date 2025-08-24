@@ -2,7 +2,7 @@
 export const products = [
   {
     id: 1,
-    name: "Booklight",
+    name: "Booklights",
     price: "$19.99",
     image: "https://via.placeholder.com/300x200",
   },
@@ -25,4 +25,17 @@ export const products = [
     image: "https://via.placeholder.com/300x200",
   },
   // Add more products here
+  {
+    id: 5,
+    name: "Set Set",
+    price: "$12.99",
+    image: "https://via.placeholder.com/300x200",
+  },
+
+  {
+    id: 6,
+    name: "S Set",
+    price: "$12.99",
+    image: "https://via.placeholder.com/300x200",
+  }
 ];
