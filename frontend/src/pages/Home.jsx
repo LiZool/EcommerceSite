@@ -76,6 +76,28 @@ const Home = () => {
           <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">Our Products</h2>
           <ProductGrid products={products} />
         </div>
+
+        <div class="w-64 mx-auto mt-20">
+  <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+    
+    <div class="relative w-full h-64 overflow-hidden">
+      <img 
+        src={Books} 
+        alt="Product" 
+        class="w-32 h-48 object-contain mx-auto transition duration-300 group-hover:opacity-70 z-0"
+      />
+
+      <div class="absolute inset-0 flex items-center justify-center bg-blue-600 bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 z-10 pointer-events-none">
+        <span class="text-white text-lg font-semibold">Product Name</span>
+      </div>
+    </div>
+
+    <div class="p-4 text-center">
+      <h3 class="text-lg font-semibold mb-2">Product Name</h3>
+      <p class="text-gray-700 font-bold">$19.99</p>
+    </div>
+  </div>
+</div>
       </section>
 
       {/* Features Section */}
