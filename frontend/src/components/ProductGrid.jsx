@@ -15,7 +15,7 @@ const ProductGrid = ({ products }) => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-32 object-cover transition-transform duration-300 hover:scale-105"
+                className="w-30 h-48 object-contain mx-auto"
               />
             </div>
 

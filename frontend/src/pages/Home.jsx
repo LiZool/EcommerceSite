@@ -1,65 +1,21 @@
 // src/pages/Home.jsx
-
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import GundamHead from '../assets/images/gundamhead.png'
+import GundamHead from '../assets/images/gundamhead.png';
+import Books from '../assets/images/books.png';
 import ProductGrid from "../components/ProductGrid";
+import AnimatedHeading from "../components/AnimatedHeading";
+import RotatingTitles from "../components/RotatingTitle";
 
-const AnimatedHeading = ({ text }) => {
-  const letters = text.split('');
-
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.05 },
-    },
-  };
-
-  const letter = {
-    hidden: { opacity: 0, y: 20, scale: 1.2 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { type: 'spring', stiffness: 500, damping: 30 },
-    },
-  };
-
-  return (
-    <motion.h2
-      className="text-5xl font-extrabold text-blue-700 drop-shadow-md"
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
-      {letters.map((char, index) => (
-        <motion.span key={index} variants={letter} className="inline-block">
-          {char === ' ' ? '\u00A0' : char}
-        </motion.span>
-      ))}
-    </motion.h2>
-  );
-};
-
-
-const phrases = [
-  "Fast Delivery",
-  "Affordable Prices",
-  "Quality Guaranteed",
-  "24/7 Support"
-];
-
+const phrases = ["Fast Delivery", "Affordable Prices", "Quality Guaranteed", "24/7 Support"];
 const titles = ["Overview", "Who is it for", "Why join us?"];
 
 const Home = () => {
   const [phraseIndex, setPhraseIndex] = useState(0);
-  const [titleIndex, setTitleIndex] = useState(0);
 
-  // Example product list
   const products = [
     { id: 1, name: "Booklight", price: "$19.99", image: GundamHead },
-    { id: 2, name: "Bookmark", price: "$5.99", image: GundamHead },
+    { id: 2, name: "Bookmark", price: "$5.99", image: Books },
     { id: 3, name: "Tech Gadget", price: "$29.99", image: GundamHead },
     { id: 4, name: "Stationery Set", price: "$12.99", image: GundamHead },
     { id: 5, name: "Gundam Set", price: "$12.99", image: GundamHead },
@@ -77,7 +33,7 @@ const Home = () => {
         <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-extrabold text-blue-600 tracking-wide">BrandName</h1>
           <ul className="flex gap-8 text-md font-medium">
-            {['Home', 'About', 'Features', 'Products', 'Contact'].map((item) => (
+            {["Home", "About", "Features", "Products", "Contact"].map((item) => (
               <li key={item}>
                 <a href={`#${item.toLowerCase()}`} className="hover:text-blue-500 transition-colors duration-200">
                   {item}
@@ -88,75 +44,41 @@ const Home = () => {
         </nav>
       </header>
 
-      {/* Hero Section with Rotating Titles on Left and Welcome on Right */}
+      {/* Welcome Section */}
       <section
-        id="home"
-        className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200"
+        id="welcome"
+        className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-blue-200 px-6 py-20 md:py-30"
       >
-        <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-12 px-6">
-          
-          {/* Rotating Titles (Left) */}
-          <div className="relative w-full max-w-md h-60 flex justify-center items-center">
-            {titles.map((title, index) => {
-              const total = titles.length;
-              const angleStep = (360 / total) * Math.PI / 180; // radians
-              const radius = 120;
-
-              const relativeIndex = (index - titleIndex + total) % total;
-              const angle = relativeIndex * angleStep;
-
-              const x = radius * Math.cos(angle);
-              const y = radius * Math.sin(angle);
-
-              const isActive = index === titleIndex;
-
-              return (
-                <motion.div
-                  key={index}
-                  onClick={() => setTitleIndex(index)}
-                  className="absolute cursor-pointer max-w-[220px] bg-gray-100 hover:bg-gray-200 px-6 py-4 rounded-[1.5rem] shadow-lg transition-all duration-500 before:absolute before:-bottom-2 before:left-6 before:w-0 before:h-0 before:border-l-[10px] before:border-l-transparent before:border-r-[10px] before:border-r-transparent before:border-t-[10px] before:border-t-gray-100"
-                  style={{
-                    left: `calc(50% + ${x}px)`,
-                    top: `calc(50% + ${y}px)`,
-                    transform: `translate(-50%, -50%) scale(${isActive ? 1.2 : 0.9})`,
-                    zIndex: isActive ? 10 : 1,
-                    opacity: isActive ? 1 : 0.5,
-                  }}
-                  animate={{ opacity: isActive ? 1 : 0.5 }}
-                >
-                  <span
-                    className={`block text-lg ${
-                      isActive ? "text-blue-600 font-bold" : "text-gray-500"
-                    }`}
-                  >
-                    {title}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Welcome Text (Right) */}
-          <div className="text-center lg:text-left">
+        <div className="text-center max-w-xl">
+          <div className="mt-4">
             <AnimatedHeading text="Welcome to Our Website" />
-            <p className="mt-4 text-lg text-gray-600 max-w-md">
-              Discover our services, explore why people trust us, and see what makes us stand out.
-            </p>
           </div>
+          <p className="mt-4 text-lg text-gray-600">
+            Discover our services, explore why people trust us, and see what makes us stand out.
+          </p>
+        </div>
+      </section>
+
+      {/* Rotating Titles Section */}
+      <section
+        id="titles"
+        className="flex items-center justify-center bg-gradient-to-br from-blue-700 to-blue-900"
+        style={{ minHeight: "300px", position: "relative" }} // Ensure section is relative for absolute children
+      >
+        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+          <RotatingTitles titles={titles} />
         </div>
       </section>
 
       {/* Products Section */}
-<section id="products" className="bg-white px-6 py-12">
-  <div className="max-w-screen-2xl mx-auto">
-    <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">
-      Our Products
-    </h2>
-    <ProductGrid products={products} />
-  </div>
-</section>
+      <section id="products" className="bg-white px-6 py-12">
+        <div className="max-w-screen-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">Our Products</h2>
+          <ProductGrid products={products} />
+        </div>
+      </section>
 
-      {/* Features Section with Animated Phrases */}
+      {/* Features Section */}
       <section id="features" className="h-screen flex items-center justify-center bg-yellow-50">
         <div className="w-full max-w-xl mx-auto text-center py-10">
           <div className="h-24 flex items-center justify-center relative overflow-hidden">
@@ -179,7 +101,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
 
       {/* Contact Section */}
       <section id="contact" className="h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-purple-200">
