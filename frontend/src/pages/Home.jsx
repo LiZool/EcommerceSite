@@ -1,26 +1,28 @@
 // src/pages/Home.jsx
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import GundamHead from '../assets/images/gundamhead.png';
+import Toys from '../assets/images/toys.png';
 import Books from '../assets/images/books.png';
+import Clothes from '../assets/images/clothing.png';
+import Gadgets from '../assets/images/gadget.png';
+import Misc from '../assets/images/misc.png';
 import ProductGrid from "../components/ProductGrid";
 import AnimatedHeading from "../components/AnimatedHeading";
 import RotatingTitles from "../components/RotatingTitle";
 
 const phrases = ["Fast Delivery", "Affordable Prices", "Quality Guaranteed", "24/7 Support"];
-const titles = ["Overview", "Who is it for", "Why join us?"];
+const titles = ["Overview", "What do we have?", "Rare"];
 
 const Home = () => {
   const [phraseIndex, setPhraseIndex] = useState(0);
 
   const products = [
-    { id: 1, name: "Booklight", price: "$19.99", image: GundamHead },
-    { id: 2, name: "Bookmark", price: "$5.99", image: Books },
-    { id: 3, name: "Tech Gadget", price: "$29.99", image: GundamHead },
-    { id: 4, name: "Stationery Set", price: "$12.99", image: GundamHead },
-    { id: 5, name: "Gundam Set", price: "$12.99", image: GundamHead },
-    { id: 6, name: "Set", price: "$12.99", image: GundamHead },
-    { id: 7, name: "Set", price: "$12.99", image: GundamHead },
+    { id: 1, name: "Intro" },
+    { id: 2, name: "Electronics", image: Gadgets },
+    { id: 3, name: "Books", image: Books },
+    { id: 4, name: "Toys", image: Toys },
+    { id: 5, name: "Clothes", image: Clothes },
+    { id: 6, name: "Miscellaneous", image: Misc },
   ];
 
   const handleNext = () => setPhraseIndex((prev) => (prev + 1) % phrases.length);
@@ -29,13 +31,13 @@ const Home = () => {
   return (
     <div className="scroll-smooth font-sans">
       {/* Navbar */}
-      <header className="fixed w-full bg-white shadow-md z-10">
+      <header className="fixed w-full bg-white/80 backdrop-blur-lg shadow-sm z-10">
         <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-extrabold text-blue-600 tracking-wide">BrandName</h1>
           <ul className="flex gap-8 text-md font-medium">
             {["Home", "About", "Features", "Products", "Contact"].map((item) => (
               <li key={item}>
-                <a href={`#${item.toLowerCase()}`} className="hover:text-blue-500 transition-colors duration-200">
+                <a href={`#${item.toLowerCase()}`} className="relative hover:text-blue-500 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full">
                   {item}
                 </a>
               </li>
@@ -49,8 +51,8 @@ const Home = () => {
         id="welcome"
         className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-blue-200 px-6 py-20 md:py-30"
       >
-        <div className="text-center max-w-xl">
-          <div className="mt-4">
+        <div className="text-center max-w-2xl mx-auto px-4">
+          <div className="mt-4 text-5xl font-extrabold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
             <AnimatedHeading text="Welcome to Our Website" />
           </div>
           <p className="mt-4 text-lg text-gray-600">
@@ -62,7 +64,7 @@ const Home = () => {
       {/* Rotating Titles Section */}
       <section
         id="titles"
-        className="flex items-center justify-center bg-gradient-to-br from-blue-700 to-blue-900"
+        className="flex items-center justify-center bg-gradient-to-br from-blue-700 to-blue-900 py-10"
         style={{ minHeight: "300px", position: "relative" }} // Ensure section is relative for absolute children
       >
         <div style={{ position: "relative", width: "100%", height: "100%" }}>
@@ -76,28 +78,6 @@ const Home = () => {
           <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">Our Products</h2>
           <ProductGrid products={products} />
         </div>
-
-        <div class="w-64 mx-auto mt-20">
-  <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
-    
-    <div class="relative w-full h-64 overflow-hidden">
-      <img 
-        src={Books} 
-        alt="Product" 
-        class="w-32 h-48 object-contain mx-auto transition duration-300 group-hover:opacity-70 z-0"
-      />
-
-      <div class="absolute inset-0 flex items-center justify-center bg-blue-600 bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 z-10 pointer-events-none">
-        <span class="text-white text-lg font-semibold">Product Name</span>
-      </div>
-    </div>
-
-    <div class="p-4 text-center">
-      <h3 class="text-lg font-semibold mb-2">Product Name</h3>
-      <p class="text-gray-700 font-bold">$19.99</p>
-    </div>
-  </div>
-</div>
       </section>
 
       {/* Features Section */}

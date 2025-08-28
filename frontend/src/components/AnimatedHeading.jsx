@@ -23,19 +23,19 @@ const AnimatedHeading = ({ text, className }) => {
   };
 
   return (
-<motion.h2
-  className={`${className || "text-5xl font-extrabold text-blue-700 drop-shadow-md"}`}
-  variants={container}
-  initial="hidden"
-  animate="visible"
->
-  {letters.map((char, index) => (
-    <motion.span key={index} variants={letter} className="inline-block">
-      {char === " " ? "\u00A0" : char}
-    </motion.span>
-  ))}
-</motion.h2>
-  );
-};
+  <motion.h2
+    className={`${className || "text-5xl font-extrabold text-gray-700 hover:bg-gradient-to-r hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition duration-500"}`}
+    variants={container}
+    initial="hidden"
+    animate="visible"
+  >
+    {letters.map((char, index) => (
+      <motion.span key={index} variants={letter} className="inline-block">
+        {char === " " ? "\u00A0" : char}
+      </motion.span>
+    ))}
+  </motion.h2>
+    );
+  };
 
 export default AnimatedHeading;
