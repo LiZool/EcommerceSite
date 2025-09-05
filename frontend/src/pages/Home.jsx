@@ -59,54 +59,49 @@ const Navbar = () => {
         {/* Right side: either links or menu */}
         <div className="flex items-center">
           {isScrolled ? (
-            <div className="relative">
-              <div
-                className="flex items-center cursor-pointer bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                <FiMenu className="text-2xl" />
-                <span className="text-md font-medium ml-2">
-                  Menu
-                </span>
-              </div>
+  <div className="relative">
+    <div
+      className="flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full text-white cursor-pointer hover:bg-blue-700 transition-all duration-300"
+      onClick={() => setIsMenuOpen(!isMenuOpen)}
+    >
+      <FiMenu className="text-2xl m-auto" />
+    </div>
 
-              {/* Dropdown */}
-              {isMenuOpen && (
-                <div className="absolute right-0 mt-2 bg-white shadow-md rounded-lg py-4 z-40">
-                  <ul className="flex flex-col items-start gap-4 text-md font-medium px-6">
-                    {["Home", "About", "Products", "Features", "Contact"].map(
-                      (item) => (
-                        <li key={item}>
-                          <a
-                            href={`#${item.toLowerCase()}`}
-                            className="hover:text-blue-500"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {item}
-                          </a>
-                        </li>
-                      )
-                    )}
-                  </ul>
-                </div>
-              )}
-            </div>
-          ) : (
-            <ul className="flex gap-8 text-md font-medium">
-              {["Home", "About", "Products", "Features", "Contact"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href={`#${item.toLowerCase()}`}
-                      className="relative hover:text-blue-500 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
-            </ul>
-          )}
+    {/* Dropdown */}
+    {isMenuOpen && (
+      <div className="absolute right-0 mt-2 bg-white shadow-md rounded-lg py-4 z-40">
+        <ul className="flex flex-col items-start gap-4 text-md font-medium px-6">
+          {["Home", "About", "Products", "Features", "Contact"].map((item) => (
+            <li key={item}>
+              <a
+                href={`#${item.toLowerCase()}`}
+                className="hover:text-blue-500"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+) : (
+  <ul className="flex gap-8 text-md font-medium">
+    {["Home", "About", "Products", "Features", "Contact"].map(
+      (item) => (
+        <li key={item}>
+          <a
+            href={`#${item.toLowerCase()}`}
+            className="relative hover:text-blue-500 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            {item}
+          </a>
+        </li>
+      )
+    )}
+  </ul>
+)}
         </div>
       </nav>
     </header>
