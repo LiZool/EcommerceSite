@@ -61,29 +61,40 @@
   width: 100%;
 }
 
-/* Circle menu styles */
+/* Fade/scale transition for nav links */
+.nav-links,
 .circle-menu-container {
-  position: relative;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform-origin: right center; /* optional, looks nicer */
 }
 
-.circle-menu-button {
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s;
+/* Hidden state */
+.nav-links.hide {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
 }
 
-.circle-menu-button:hover {
-  background: #1e40af;
+.circle-menu-container.hide {
+opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
 }
 
+/* Visible state */
+.nav-links.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.circle-menu-container.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Menu icon inside the circle */
 .menu-icon {
   font-size: 1.5rem;
 }
