@@ -44,66 +44,84 @@ const Navbar = () => {
     <header
       className={`fixed w-full z-50 transition-colors duration-300 ${
         isScrolled ? "bg-white/90" : "bg-transparent"
-        /* isScrolled ? "bg-white/90 shadow-md" : "bg-transparent" */
       }`}
     >
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center relative">
-        {/* BrandName stays in DOM, fades when scrolled */}
-        <h1
-          className={`text-2xl font-extrabold text-blue-600 tracking-wide transition-opacity duration-300 ${
-            isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-          }`}
-        >
-          BrandName
-        </h1>
+        
+        {/* Section 1: BrandName */}
+        <div className="flex-1">
+          <h1
+            className={`text-2xl font-extrabold text-blue-600 tracking-wide transition-opacity duration-300 ${
+              isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
+          >
+            BrandName
+          </h1>
+        </div>
 
-        {/* Right side: either links or menu */}
-        <div className="flex items-center">
-          {isScrolled ? (
-          <div className="circle-menu-container">
-            <button
-              className="circle-menu-button"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <FiMenu className="menu-icon" />
-            </button>
+        {/* Section 2: Nav Links */}
+        <div className="flex-1 flex justify-center">
+          <ul
+            className={`nav-links transition-all duration-500 ${
+              isScrolled ? "hide" : "show"
+            } flex gap-8 text-md font-medium`}
+          >
+            {["Home", "About", "Products", "Features", "Contact"].map((item) => (
+              <li key={item}>
+                <a
+                  href={`#${item.toLowerCase()}`}
+                  className="relative hover:text-blue-500 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-            {isMenuOpen && (
-              <div className="dropdown open">
-                <ul>
-                  {["Home", "About", "Products", "Features", "Contact"].map((item) => (
-                    <li key={item}>
-                      <a href={`#${item.toLowerCase()}`} onClick={() => setIsMenuOpen(false)}>
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-          ) : (
-            <ul className="flex gap-8 text-md font-medium">
-              {["Home", "About", "Products", "Features", "Contact"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href={`#${item.toLowerCase()}`}
-                      className="relative hover:text-blue-500 after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
+        {/* Section 3: Login + Circle Menu */}
+        <div className="flex-1 flex justify-end items-center gap-4">
+          {/* Login Text (disappears on scroll) */}
+          <a
+            href="/login"
+            className={`text-blue-600 font-semibold transition-opacity duration-300 ${
+              isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
+          >
+            Login
+          </a>
+
+          {/* Circle Menu (only appears when scrolled) */}
+          {isScrolled && (
+            <div className="circle-menu-container transition-all duration-500">
+              <button
+                className="circle-menu-button"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                <FiMenu className="menu-icon" />
+              </button>
+
+              {isMenuOpen && (
+                <div className="dropdown open">
+                  <ul>
+                    {["Home", "About", "Products", "Features", "Contact"].map((item) => (
+                      <li key={item}>
+                        <a href={`#${item.toLowerCase()}`} onClick={() => setIsMenuOpen(false)}>
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
-            </ul>
+            </div>
           )}
         </div>
+
       </nav>
     </header>
   );
 };
-
 const Home = () => {
   const [selected, setSelected] = useState(0);
 

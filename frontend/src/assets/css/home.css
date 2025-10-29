@@ -61,11 +61,38 @@
   width: 100%;
 }
 
+.circle-menu-button {
+  background-color: #2563eb; /* Blue circle */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Makes it circular */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.circle-menu-button:hover {
+  background-color: #1e40af; /* Slightly darker on hover */
+  transform: scale(1.1); /* subtle grow */
+}
+
 /* Fade/scale transition for nav links */
 .nav-links,
 .circle-menu-container {
   transition: opacity 0.4s ease, transform 0.4s ease;
   transform-origin: right center; /* optional, looks nicer */
+}
+
+/* Visible state */
+.nav-links.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
 }
 
 /* Hidden state */
@@ -76,15 +103,8 @@
 }
 
 .circle-menu-container.hide {
-opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
-}
-
-/* Visible state */
-.nav-links.show {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 0;
+  transform: scale(0.8);
   pointer-events: auto;
 }
 
