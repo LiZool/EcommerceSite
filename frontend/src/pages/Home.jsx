@@ -83,7 +83,7 @@ const Navbar = () => {
         <div className="flex-1 flex justify-end items-center gap-4">
           {/* Login Text (disappears on scroll) */}
           <a
-            href="/login"
+            href="./SignUp"
             className={`text-blue-600 font-semibold transition-opacity duration-300 ${
               isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
