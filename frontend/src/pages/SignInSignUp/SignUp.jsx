@@ -19,10 +19,10 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex lg:flex-row min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-50">
       {/* Left: Welcome */}
       <div
-        className="lg:flex-1 flex items-center justify-center bg-blue-800 rounded-l-3xl relative overflow-hidden px-12"
+        className="w-full lg:w-1/2 flex items-center justify-center bg-blue-800 rounded-l-3xl relative overflow-hidden"
         style={{ backgroundColor: "#2b6cb0", height: "100vh" }}
       >
         <div className="text-center flex flex-col justify-center items-center p-8">
@@ -33,16 +33,18 @@ const Signup = () => {
             className="drop-shadow-2xl mb-4"
           />
           <h3 className="text-white text-xl font-semibold">Welcome Aboard!</h3>
-          <p className="text-blue-100 mt-2 text-sm max-w-xs mx-auto">
+          <p className="text-white mt-2 text-sm max-w-xs mx-auto">
             Start your journey with us — create an account and explore new possibilities.
           </p>
         </div>
       </div>
 
-      {/* Right: Signup Form/ Login Form */}
-      <div className="lg:flex-1 flex items-center justify-center px-8 lg:px-20 py-12"
-            style={{ backgroundColor: "#Ff0000", height: "100vh" }}>
-        <div className="bg-white w-full max-w-md p-10 rounded-2xl shadow-2xl">
+      {/* Right: Signup Form */}
+      <div
+        className="w-full lg:w-1/2 flex items-center justify-center bg-gray-100"
+        style={{ height: "100vh" }}
+      >
+        <div className="w-full max-w-md p-10 rounded-2xl shadow-2xl">
           <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-2">
             Create Account
           </h2>
